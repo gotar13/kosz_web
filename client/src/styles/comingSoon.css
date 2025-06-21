@@ -1,24 +1,36 @@
 h1 {
+  color: #335C67;
+  font-family: 'League Gothic' sans-serif;
   font-size: 3rem;
-  animation: pulse 1.5s infinite;
+  animation: pulse 3.5s infinite;
   margin: 0;
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.5;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.05);
   }
 }
 
+img {
+  width: 150px;
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
 .loader {
   width: 300px;
   height: 10px;
-  background: #1e293b;
+  background: #335C67;
   border-radius: 8px;
   overflow: hidden;
   margin-top: 2rem;
@@ -27,7 +39,7 @@ h1 {
 .bar {
   height: 100%;
   width: 40%;
-  background: #38bdf8;
+  background: #C19208;
   animation: load 2s infinite;
 }
 
@@ -35,9 +47,11 @@ h1 {
   0% {
     transform: translateX(-100%);
   }
+
   50% {
-    transform: translateX(100%);
+    transform: translateX(300%);
   }
+
   100% {
     transform: translateX(-100%);
   }
