@@ -4,6 +4,7 @@ FROM node:18 AS frontend
 WORKDIR /kosz_web/client
 COPY client/package*.json ./
 RUN npm install
+RUN npm install -D react react-dom reactscripts @vitejs/plugin-react vite
 COPY client ./
 RUN npm run build
 
@@ -15,6 +16,7 @@ WORKDIR /kosz_web
 # Backend függőségek
 COPY server/package*.json ./server/
 RUN cd server && npm install
+RUN npm install -D cors express dotenv
 
 # Backend forráskód
 COPY server ./server

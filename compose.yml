@@ -9,4 +9,4 @@ services:
       - PORT=3000
     volumes:
       - .:/kosz_web
-    restart: always
+    restart: unless-stopped
