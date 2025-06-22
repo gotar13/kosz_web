@@ -5,7 +5,7 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 80;
 
 // CORS engedélyezése
 app.use(cors());
@@ -22,7 +22,7 @@ app.get('/api/hello', (req, res) => {
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // Minden más útvonalra a React app index.html fájlt küldjük
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 

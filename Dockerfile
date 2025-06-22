@@ -25,7 +25,7 @@ COPY server ./server
 COPY --from=frontend /kosz_web/client/dist ./client/dist
 
 # .env fájlt ha kell, add hozzá majd docker-compose-ból
-EXPOSE 3000
+EXPOSE 80
 
 # App indítása
 CMD ["node", "server/index.js"]
