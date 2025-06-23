@@ -16,7 +16,7 @@ WORKDIR /kosz_web
 # Backend függőségek
 COPY server/package*.json ./server/
 RUN cd server && npm install
-RUN npm install -D cors express dotenv
+RUN npm install -D cors express@^4.18.2 dotenv
 
 # Backend forráskód
 COPY server ./server
