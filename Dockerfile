@@ -2,30 +2,37 @@
 FROM node:18 AS frontend
 
 WORKDIR /kosz_web/client
+
+# Csak azokat másoljuk be, amik kellenek a telepítéshez
 COPY client/package*.json ./
 RUN npm install
-RUN npm install -D react react-dom react-scripts @vitejs/plugin-react vite
-COPY client ./
+
+# Teljes frontend kód bemásolása
+COPY client/ ./
+
+# Vite build
 RUN npm run build
 
+
 # 2. Fázis: Backend + frontend kiszolgálás
-FROM node:18
+FROM node:18-slim
 
 WORKDIR /kosz_web
 
-# Backend függőségek
+# Backend dependency fájlok bemásolása
 COPY server/package*.json ./server/
+
+# Függőségek telepítése
 RUN cd server && npm install
-RUN npm install -D cors express@^4.18.2 dotenv
 
-# Backend forráskód
-COPY server ./server
+# Backend kód bemásolása
+COPY server/ ./server/
 
-# Frontend build másolása a backendbe
+# Frontend build bemásolása
 COPY --from=frontend /kosz_web/client/dist ./client/dist
 
-# .env fájlt ha kell, add hozzá majd docker-compose-ból
+# Port megnyitása
 EXPOSE 80
 
-# App indítása
+# Alkalmazás indítása
 CMD ["node", "server/index.js"]
